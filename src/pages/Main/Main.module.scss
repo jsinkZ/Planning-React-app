@@ -1,0 +1,9 @@
+@import "./../../assets/styles/index.scss";
+
+main {
+    display: flex;
+    justify-content: flex-start;
+    width: 1200px;
+    min-height: 520px;
+    margin: 35px auto;
+}

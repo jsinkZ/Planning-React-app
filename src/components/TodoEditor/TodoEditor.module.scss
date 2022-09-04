@@ -1,0 +1,108 @@
+@import "./../../assets/styles/index.scss";
+
+
+.createTodoMenu {
+    width: 26%;
+    height: 520px;
+    margin: 0 30px;
+    background-color: $bgrclr;
+    border: 1px solid $brdrclr;
+    border-radius: 5px;
+    align-items: center;
+    text-align: center;
+
+    h2 {
+        user-select: none;
+        margin-bottom: 15px;
+    }
+
+    h4 {
+        user-select: none;
+    }
+
+    input, textarea {
+        height: 35px;
+        width: 300px;
+        margin-bottom: 15px;
+        padding: 5px;
+        box-sizing: border-box;
+        text-align: center;
+        outline: none;
+        background-color: $blockclr;
+        border: 1px solid $brdrclr;
+        border-radius: 5px;
+        font-weight: bold;
+        user-select: none;
+        resize: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    }
+
+    .inputNotes {
+        height: 75px;
+    }
+
+    .tags {
+        width: 300px;
+        margin: 0 auto;
+        margin-bottom: 15px;
+        padding: 5px;
+        box-sizing: border-box;
+        user-select: none;
+        background-color: $blockclr;
+        border: 1px solid $brdrclr;
+        border-radius: 5px;
+
+        .tag {
+            display: flex;
+            height: 20px;
+            align-items: center;
+            cursor: pointer;
+            transition: 0.5s all ease;
+     
+            .tagIcon {
+                width: 15px;
+                height: 15px;
+                margin-right: 5px;
+                border-radius: 100%;
+            }
+
+        }
+
+        .remove {
+            .tagIcon {
+                background-color: #606060;
+            }
+        }
+
+        .remove:hover {
+            color: #606060;
+        }
+
+    }
+
+    button {
+        width: 100%;
+        height: 35px;
+        margin-top: 220px;
+        border: 1px solid #E1E1E1;
+        background-color: $blockclr;
+        border: 1px solid $brdrclr;
+        border-radius: 5px;
+        cursor: pointer;
+        user-select: none;
+        font-weight: bold;
+        transition: 0.5s all ease;
+    }
+
+    button:hover {
+        background-color: $hoverClr;
+        color: white;
+    }
+
+    .butDis:hover {
+        color: #B1B1B1;
+        background-color: #F0F0F0;
+        cursor:auto;
+
+    }
+}
