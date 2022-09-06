@@ -9,6 +9,7 @@ import classes from './Todos.module.scss'
 
 const Todos = ({ todoItems }) => {
 	const [showNotes, setShowNotes] = React.useState([])
+	const [selectedTodos, setSelectedTodos] = React.useState([])
 
 	const onClickCheckBox = (event) => {
 		event.stopPropagation()
@@ -18,7 +19,17 @@ const Todos = ({ todoItems }) => {
 		event.stopPropagation()
 	}
 
-	const onClickActionNotes = (todoId) => {
+	const onClickSelectTodo = (todo) => {
+		if (selectedTodos.includes(todo)) {
+			setSelectedTodos(selectedTodos.filter((td) => td !== todo))
+		} else {
+			setSelectedTodos([...selectedTodos, todo])
+		}
+	}
+
+	const onClickActionNotes = (event, todoId) => {
+		event.stopPropagation()
+
 		if (showNotes.includes(todoId)) setShowNotes(showNotes.filter((td) => td !== todoId))
 		else setShowNotes([...showNotes, todoId])
 	}
@@ -26,14 +37,31 @@ const Todos = ({ todoItems }) => {
 	return (
 		<div className={classes.todos}>
 			<h2> Todos </h2>
+			<h3 style={{ color: selectedTodos.length > 0 ? 'black' : '#B1B1B1' }} className={classes.selectedTodos}>
+				Selected: {selectedTodos.length}{' '}
+			</h3>
+			<div className={classes.actionToSelected}>
+				<Checkbox
+					sx={{
+						'&.Mui-checked': {
+							color: green['700'],
+						},
+					}}
+				/>
+				<IconButton className={classes.remove}>
+					<DeleteIcon />
+				</IconButton>
+			</div>
 			<div className={classes.todoElemets}>
 				{todoItems.map((todo) => {
 					const style = {
 						borderTopColor: todo.tag.color ? todo.tag.color : '#4150B6',
+						backgroundColor: selectedTodos.includes(todo.id) ? '#4150B6' : '',
+						color: selectedTodos.includes(todo.id) ? 'white' : '',
 					}
 
 					return (
-						<div className={classes.todoElement} onClick={() => onClickActionNotes(todo.id)} key={todo.id}>
+						<div className={classes.todoElement} onClick={() => onClickSelectTodo(todo.id)} key={todo.id}>
 							{todo.notes !== '' && showNotes.includes(todo.id) ? (
 								<div
 									onClick={(event) => event.stopPropagation()}
@@ -57,7 +85,7 @@ const Todos = ({ todoItems }) => {
 								{todo.name}
 								{todo.notes !== '' ? (
 									<IconButton
-										onClick={() => onClickActionNotes(todo.id)}
+										onClick={(event) => onClickActionNotes(event, todo.id)}
 										className={`${classes.arrow} ${showNotes.includes(todo.id) ? classes.openedArrow : ''}`}
 									>
 										<ArrowIcon />

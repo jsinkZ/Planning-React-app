@@ -1,16 +1,41 @@
 @import "./../../assets/styles/index.scss";
 
 .todos {
+    display: flex;
+    flex-direction: column;
     width: 70%;
     margin: 0 30px;
     background-color: $bgrclr;
-    border: 1px solid $brdrclr;
+    border: 1px solid $brdrclr; 
     border-radius: 5px;
     align-items: center;
     text-align: center;
     
     h2 {
         user-select: none;
+        margin-bottom: 4px;
+    }
+
+    .selectedTodos {
+        margin-top: 0;
+        color: #d7d0d0;
+        cursor: default;
+        user-select: none;
+    }
+
+    .actionToSelected {
+        display: flex;
+        justify-content: space-between;
+        width: 350px;
+        padding: 6px;
+        margin: 0 15px;
+        text-align: left;
+        border: 1px solid red;
+
+        .remove {
+            float: right;
+            border: 1px solid red;
+        }
     }
 
     .todoElemets {
