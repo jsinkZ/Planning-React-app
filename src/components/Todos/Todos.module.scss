@@ -21,21 +21,7 @@
         color: #d7d0d0;
         cursor: default;
         user-select: none;
-    }
-
-    .actionToSelected {
-        display: flex;
-        justify-content: space-between;
-        width: 350px;
-        padding: 6px;
-        margin: 0 15px;
-        text-align: left;
-        border: 1px solid red;
-
-        .remove {
-            float: right;
-            border: 1px solid red;
-        }
+        transition: 0.3s all ease;
     }
 
     .todoElemets {
@@ -44,59 +30,36 @@
         justify-content: center;
         flex-wrap: wrap;
 
-        .todoElement {
-            display: flex;
-            flex-direction: column;
-            margin: 20px;
 
-            .todoMain, .todoNotes {
-                width: 350px;
-                padding: 6px;
-                margin: 0 15px;
-                text-align: left;
-                border-radius: 5px;
-                background-color: $blockclr;
-                color: #606060;
-                border: 1px solid $brdrclr;
-                cursor: pointer;
-                transition: 0.5s all ease;
-            }
+    .actionToSelected {
+        display: flex;
+        justify-content: space-between;
+        width: 55%;
+        margin: 20px;
+        padding: 6px;
+        background-color: $blockclr;
+        border-radius: 5px;
 
-            .todoMain {
-                border-top-width: 7px;
-                order: -1;
-                float: right;
-                
-                .arrow {   
-                        margin-right: 15px;
-                        transition: 0.4s all ease;
-                    }
 
-                .openedArrow { 
-                    transform: rotate(180deg);
-                }
-
-                .remove { 
-                    float: right;
-                }
-            }
-
-            .todoNotes {
-                display: none;
-                border-top-right-radius: 0;
-                border-top-left-radius: 0;
-                border-top: none;
-            }
-
-            .show {
-                display: initial;
-            }
-
-            .todoMain:hover, .todoNotes:hover + .todoMain {
-                border-top-color: $hoverClr;
-                background-color: $hoverClr;
-                color: white;
-            }
+        span {
+            width: 30px;
+            height: 30px;
         }
+
+        .checkBoxThisTodo {
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        .checkBoxFinished {
+            margin-left: -270px;
+        }
+
+        .remove {
+            width: 30px;
+            height: 30px;
+            margin-right: 20px;
+        }
+    }
     }
 }

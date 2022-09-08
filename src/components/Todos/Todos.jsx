@@ -3,9 +3,11 @@ import Checkbox from '@mui/material/Checkbox'
 import { green } from '@mui/material/colors'
 import { IconButton } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete'
-import ArrowIcon from '@mui/icons-material/ArrowDropDown'
+import Brightness1Icon from '@mui/icons-material/Brightness1'
+import Brightness1OutlinedIcon from '@mui/icons-material/Brightness1Outlined'
 
 import classes from './Todos.module.scss'
+import Todo from '../Todo/Todo'
 
 const Todos = ({ todoItems }) => {
 	const [showNotes, setShowNotes] = React.useState([])
@@ -40,64 +42,40 @@ const Todos = ({ todoItems }) => {
 			<h3 style={{ color: selectedTodos.length > 0 ? 'black' : '#B1B1B1' }} className={classes.selectedTodos}>
 				Selected: {selectedTodos.length}{' '}
 			</h3>
-			<div className={classes.actionToSelected}>
-				<Checkbox
-					sx={{
-						'&.Mui-checked': {
-							color: green['700'],
-						},
-					}}
-				/>
-				<IconButton className={classes.remove}>
-					<DeleteIcon />
-				</IconButton>
-			</div>
+
 			<div className={classes.todoElemets}>
+				<div className={classes.actionToSelected}>
+					<Checkbox
+						className={classes.checkBoxThisTodo}
+						onClick={onClickCheckBox}
+						icon={<Brightness1OutlinedIcon />}
+						checkedIcon={<Brightness1Icon />}
+					/>
+					<Checkbox
+						className={classes.checkBoxFinished}
+						sx={{
+							'&.Mui-checked': {
+								color: green['700'],
+							},
+						}}
+					/>
+					<IconButton className={classes.remove}>
+						<DeleteIcon />
+					</IconButton>
+				</div>
+
 				{todoItems.map((todo) => {
-					const style = {
-						borderTopColor: todo.tag.color ? todo.tag.color : '#4150B6',
-						backgroundColor: selectedTodos.includes(todo.id) ? '#4150B6' : '',
-						color: selectedTodos.includes(todo.id) ? 'white' : '',
-					}
-
 					return (
-						<div className={classes.todoElement} onClick={() => onClickSelectTodo(todo.id)} key={todo.id}>
-							{todo.notes !== '' && showNotes.includes(todo.id) ? (
-								<div
-									onClick={(event) => event.stopPropagation()}
-									className={`${classes.todoNotes} ${showNotes ? classes.show : ''}`}
-								>
-									{todo.notes}
-								</div>
-							) : (
-								''
-							)}
-
-							<div style={style} className={classes.todoMain}>
-								<Checkbox
-									onClick={onClickCheckBox}
-									sx={{
-										'&.Mui-checked': {
-											color: green['700'],
-										},
-									}}
-								/>
-								{todo.name}
-								{todo.notes !== '' ? (
-									<IconButton
-										onClick={(event) => onClickActionNotes(event, todo.id)}
-										className={`${classes.arrow} ${showNotes.includes(todo.id) ? classes.openedArrow : ''}`}
-									>
-										<ArrowIcon />
-									</IconButton>
-								) : (
-									''
-								)}
-								<IconButton onClick={onClickRemove} className={classes.remove}>
-									<DeleteIcon />
-								</IconButton>
-							</div>
-						</div>
+						<Todo
+							key={todo.id}
+							todo={todo}
+							selectedTodos={selectedTodos}
+							showNotes={showNotes}
+							onClickSelectTodo={onClickSelectTodo}
+							onClickCheckBox={onClickCheckBox}
+							onClickRemove={onClickRemove}
+							onClickActionNotes={onClickActionNotes}
+						/>
 					)
 				})}
 			</div>

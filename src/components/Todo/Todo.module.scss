@@ -1,0 +1,67 @@
+@import "./../../assets/styles/index.scss";
+.todoGroup {
+    display: flex;
+    justify-content: center;
+    width: 55%;
+    margin: 20px;
+
+    .checkBoxThisTodo {
+        width: 30px;
+        height: 30px;
+        margin-top: 18px;
+        margin-right: 10px;
+    }
+
+    .todoElement {
+        display: flex;
+        flex-direction: column;
+
+        .todoMain, .todoNotes {
+            width: 350px;
+            padding: 6px;
+            text-align: left;
+            border-radius: 5px;
+            background-color: $blockclr;
+            color: #606060;
+            border: 1px solid $brdrclr;
+            cursor: pointer;
+            transition: 0.5s all ease;
+        }
+
+        .todoMain {
+            border-top-width: 7px;
+            order: -1;
+            float: right;
+            
+            .arrow {   
+                    margin-right: 15px;
+                    transition: 0.4s all ease;
+                }
+
+            .openedArrow { 
+                transform: rotate(180deg);
+            }
+
+            .remove { 
+                float: right;
+            }
+        }
+
+        .todoNotes {
+            display: none;
+            border-top-right-radius: 0;
+            border-top-left-radius: 0;
+            border-top: none;
+        }
+
+        .show {
+            display: initial;
+        }
+
+        .todoMain:hover, .todoNotes:hover + .todoMain {
+            border-top-color: $hoverClr;
+            background-color: $hoverClr;
+            color: white;
+        }
+    }
+}
