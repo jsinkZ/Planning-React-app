@@ -1,38 +1,61 @@
 import React from 'react'
 import Checkbox from '@mui/material/Checkbox'
-import { green } from '@mui/material/colors'
 import { IconButton } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete'
 import ArrowIcon from '@mui/icons-material/ArrowDropDown'
 import Brightness1Icon from '@mui/icons-material/Brightness1'
 import Brightness1OutlinedIcon from '@mui/icons-material/Brightness1Outlined'
+import EditIcon from '@mui/icons-material/Edit'
 
 import classes from './Todo.module.scss'
+import { colors } from '../../assets/js/colors'
 
 const Todo = ({
 	todo,
 	selectedTodos,
 	showNotes,
+	isDone,
 	onClickSelectTodo,
-	onClickCheckBox,
-	onClickRemove,
 	onClickActionNotes,
+	onClickConfirmRemove,
+	onClickDoneTodo,
+	onClickEditTodo,
 }) => {
+	const isSelected = (todoId) => selectedTodos.includes(todoId)
+	const onClickEdit = (event, todoId) => {
+		event.stopPropagation()
+
+		onClickEditTodo(todoId)
+	}
 	const style = {
-		borderTopColor: todo.tag.color ? todo.tag.color : '#4150B6',
-		backgroundColor: selectedTodos.includes(todo.id) ? '#4150B6' : '',
+		borderTopColor: isDone
+			? colors.inactive
+			: todo.tag && !isSelected(todo.id)
+			? todo.tag.color
+			: colors.defaultBlue,
+		backgroundColor: selectedTodos.includes(todo.id) ? colors.defaultBlue : '',
 		color: selectedTodos.includes(todo.id) ? 'white' : '',
+		textDecoration: isDone ? 'line-through' : '',
 	}
 
 	return (
 		<div className={classes.todoGroup}>
-			<Checkbox
-				className={classes.checkBoxThisTodo}
-				onClick={onClickCheckBox}
-				icon={<Brightness1OutlinedIcon />}
-				checkedIcon={<Brightness1Icon />}
-			/>
-			<div className={classes.todoElement} onClick={() => onClickSelectTodo(todo.id)}>
+			{!isDone && (
+				<Checkbox
+					sx={{
+						'&.Mui-checked': {
+							color: colors.defaultBlue,
+						},
+					}}
+					checked={isSelected(todo.id)}
+					className={classes.checkBoxThisTodo}
+					onChange={() => onClickSelectTodo(todo.id)}
+					icon={<Brightness1OutlinedIcon />}
+					checkedIcon={<Brightness1Icon />}
+				/>
+			)}
+
+			<div className={classes.todoElement} onClick={!isDone ? () => onClickSelectTodo(todo.id) : null}>
 				{todo.notes !== '' && showNotes.includes(todo.id) ? (
 					<div
 						onClick={(event) => event.stopPropagation()}
@@ -46,10 +69,12 @@ const Todo = ({
 
 				<div style={style} className={classes.todoMain}>
 					<Checkbox
-						onClick={onClickCheckBox}
+						checked={isDone}
+						onClick={(event) => event.stopPropagation()}
+						onChange={() => onClickDoneTodo(todo.id)}
 						sx={{
 							'&.Mui-checked': {
-								color: green['700'],
+								color: colors.success,
 							},
 						}}
 					/>
@@ -64,7 +89,15 @@ const Todo = ({
 					) : (
 						''
 					)}
-					<IconButton onClick={onClickRemove} className={classes.remove}>
+					{!isDone && (
+						<IconButton onClick={(event) => onClickEdit(event, todo.id)}>
+							<EditIcon className={classes.edit} />
+						</IconButton>
+					)}
+					<IconButton
+						onClick={(event) => onClickConfirmRemove(event, todo.id, isDone)}
+						className={classes.remove}
+					>
 						<DeleteIcon />
 					</IconButton>
 				</div>

@@ -1,7 +1,21 @@
-$bgrclr: #E7E7E7;
-$brdrclr: #DEDEDE;
-$blockclr: #F0F0F0;
-$hoverClr: #4150B6;
-$hmClr: #50C878;
-$wrkClr: #EB7168;
-$stdClr: #64C6E1;
+// Colors:
+$defaultColorBLue: #4150B6;
+$defaultColorGrey: #606060;
+$colorInactive: #B1B1B1;
+
+// Blocks
+$blockBackgroundColor: #E7E7E7;
+$mainBackgroundColor: #EFEFEF;
+
+// Elements
+$elementBorderColor: #DEDEDE;
+$elementBackgroundColor: #F0F0F0;
+
+// Events
+$hoverDefaultColor: #4150B6;
+$selectedDefaultColor: #4150B6;
+
+// Tags
+$tagHomeColor: #50C878;
+$tagWorkColor: #EB7168;
+$tagStudyColor: #64C6E1;

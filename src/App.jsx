@@ -1,14 +1,19 @@
 import React from 'react'
+import { Routes, Route } from 'react-router-dom'
 
 import './App.scss'
 import Header from './components/Header/Header'
-import Main from './pages/Main/Main'
+import Editor from './pages/Editor/Editor'
 
 const App = () => {
 	return (
 		<div className='app-wrapper'>
 			<Header />
-			<Main />
+			<main>
+				<Routes>
+					<Route path='/' element={<Editor />}></Route>
+				</Routes>
+			</main>
 		</div>
 	)
 }

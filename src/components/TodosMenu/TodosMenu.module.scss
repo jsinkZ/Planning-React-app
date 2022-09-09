@@ -1,0 +1,71 @@
+@import "./../../assets/styles/index.scss";
+
+.todos {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin: 0 30px;
+    background-color: $blockBackgroundColor;
+    border: 1px solid $elementBorderColor; 
+    border-radius: 5px;
+    align-items: center;
+    text-align: center;
+    
+    h2 {
+        user-select: none;
+        margin-bottom: 4px;
+    }
+
+    p {
+        margin-top: 15%;
+        font-size: 1.8em;
+        user-select: none;
+    }
+
+    .selectedTodos {
+        margin-top: 0;
+        cursor: default;
+        user-select: none;
+        transition: $changeTime all ease;
+    }
+
+    .todoElements {
+        display: flex;
+        justify-content: flex-start;
+        justify-content: center;
+        flex-wrap: wrap;
+
+
+        .actionToSelected {
+            display: flex;  
+            justify-content: space-between;
+            min-width: 425px;                
+            width: 55%;
+            margin: 20px;
+            padding: 6px;
+            background-color: $elementBackgroundColor;
+            border: 1px solid $elementBorderColor;
+            border-radius: 5px;
+
+
+            span, button {
+                width: 30px;
+                height: 30px;
+            }
+
+            .checkBoxThisTodo {
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+
+            .checkBoxFinished {
+                margin-left: -270px;
+            }
+            .remove {
+                width: 30px;
+                height: 30px;
+                margin-right: 20px;
+            }
+        }
+    }
+}

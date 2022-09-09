@@ -1,11 +1,13 @@
+@import './assets/styles/index.scss';
+
 ::selection {
-  background-color: #4150B6;
+  background-color: $hoverDefaultColor;
   color: white;
 }
 
 html {
   min-height: 100vh;
-  background-color: #EFEFEF;
+  background-color: $mainBackgroundColor;
 
   body {
     margin: 0;
@@ -14,6 +16,14 @@ html {
       sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
+    main {
+        display: flex;
+        justify-content: flex-start;
+        max-width: 1200px;
+        min-height: 520px;
+        margin: 35px auto;
+    }
   }
 
   code {

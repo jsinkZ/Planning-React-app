@@ -1,15 +1,18 @@
 @import "./../../assets/styles/index.scss";
+
 .todoGroup {
     display: flex;
     justify-content: center;
     width: 55%;
     margin: 20px;
+    border-radius: 5px;
 
     .checkBoxThisTodo {
         width: 30px;
         height: 30px;
         margin-top: 18px;
         margin-right: 10px;
+        transition: $defaultTime all ease;
     }
 
     .todoElement {
@@ -21,11 +24,11 @@
             padding: 6px;
             text-align: left;
             border-radius: 5px;
-            background-color: $blockclr;
-            color: #606060;
-            border: 1px solid $brdrclr;
+            background-color: $elementBackgroundColor;
+            color: $defaultColorGrey;
+            border: 1px solid $elementBorderColor;
             cursor: pointer;
-            transition: 0.5s all ease;
+            transition: $defaultTime all ease;
         }
 
         .todoMain {
@@ -35,11 +38,14 @@
             
             .arrow {   
                     margin-right: 15px;
-                    transition: 0.4s all ease;
+                    transition: $changeTime all ease;
                 }
-
             .openedArrow { 
                 transform: rotate(180deg);
+            }
+
+            .edit {
+                font-size: 20px;
             }
 
             .remove { 
@@ -59,8 +65,8 @@
         }
 
         .todoMain:hover, .todoNotes:hover + .todoMain {
-            border-top-color: $hoverClr;
-            background-color: $hoverClr;
+            border-top-color: $defaultColorBLue !important;
+            background-color: $defaultColorBLue;
             color: white;
         }
     }
