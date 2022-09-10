@@ -14,12 +14,12 @@ const TodosMenu = ({
 	todoItems,
 	selectedTodos,
 	isSelectedAll,
-	archiveTodos,
-	onClickDoneTodo,
+	completedTodos,
+	onClickCompleteTodo,
 	onClickSelectTodo,
 	onChangeSelectAllTodo,
 	onClickRemoveTodo,
-	onClickDoneToSelectedTodos,
+	onClickCompleteSelectedTodos,
 	onClickRemoveSelectedTodos,
 	onClickEditTodo,
 }) => {
@@ -34,14 +34,14 @@ const TodosMenu = ({
 		else setShowNotes([...showNotes, todoId])
 	}
 
-	const onClickConfirmRemove = (event, todoId, isDone = false) => {
+	const onClickConfirmRemove = (event, todoId, isCompleted = false) => {
 		event.stopPropagation()
 
-		const thisArray = isDone ? archiveTodos : todoItems
+		const thisArray = isCompleted ? completedTodos : todoItems
 		const thisTodo = thisArray.find((td) => td.id === todoId)
 		const isAccept = window.confirm(`Are you sure you want to remove todo: '${thisTodo.name}' ?`)
 
-		if (isAccept) onClickRemoveTodo(todoId, isDone)
+		if (isAccept) onClickRemoveTodo(todoId, isCompleted)
 	}
 
 	const onClickConfirmRemoveSelected = (selectedTodos) => {
@@ -82,7 +82,7 @@ const TodosMenu = ({
 							<IconButton
 								disabled={selectedTodos.length < 2}
 								className={classes.checkBoxFinished}
-								onClick={() => onClickDoneToSelectedTodos(selectedTodos)}
+								onClick={() => onClickCompleteSelectedTodos(selectedTodos)}
 								sx={{
 									color: colors.success,
 								}}
@@ -103,7 +103,7 @@ const TodosMenu = ({
 								todo={todo}
 								selectedTodos={selectedTodos}
 								showNotes={showNotes}
-								onClickDoneTodo={onClickDoneTodo}
+								onClickCompleteTodo={onClickCompleteTodo}
 								onClickSelectTodo={onClickSelectTodo}
 								onChangeCheckBox={onChangeCheckBox}
 								onClickConfirmRemove={onClickConfirmRemove}
@@ -114,27 +114,27 @@ const TodosMenu = ({
 					</div>
 				</>
 			)}
-			{archiveTodos.length > 0 && (
+			{completedTodos.length > 0 && (
 				<>
 					<h2> Completed todos </h2>
 					<div className={classes.todoElements}>
-						{archiveTodos.map((todo) => (
+						{completedTodos.map((todo) => (
 							<Todo
 								key={todo.id}
 								todo={todo}
 								selectedTodos={selectedTodos}
 								showNotes={showNotes}
-								onClickDoneTodo={onClickDoneTodo}
+								onClickCompleteTodo={onClickCompleteTodo}
 								onChangeCheckBox={onChangeCheckBox}
 								onClickConfirmRemove={onClickConfirmRemove}
 								onClickActionNotes={onClickActionNotes}
-								isDone
+								isCompleted
 							/>
 						))}
 					</div>
 				</>
 			)}
-			{todoItems.length + archiveTodos.length === 0 && (
+			{todoItems.length + completedTodos.length === 0 && (
 				<p> ✋ Now todo list is clean, but you can create a new one </p>
 			)}
 		</div>

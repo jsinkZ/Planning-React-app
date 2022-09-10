@@ -94,29 +94,45 @@
             }
         }
     }
+    .buttons {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+       
+        button {
+            width: 80%;
+            height: 35px;
+            margin-top: 15px;
+            background-color: $elementBackgroundColor;
+            border: 1px solid $elementBorderColor;
+            border-radius: 5px;
+            cursor: pointer;
+            user-select: none;
+            font-weight: bold;
+            transition: $defaultTime all ease;
+        }
+    
+        button:hover {
+            background-color: $hoverDefaultColor;
+            color: white;
+        }
+    
+        .butDis:hover {
+            color: $colorInactive;
+            background-color: $elementBackgroundColor;
+            cursor: auto;
+    
+        }
 
-    button {
-        width: 80%;
-        height: 35px;
-        margin: 30px auto;
-        background-color: $elementBackgroundColor;
-        border: 1px solid $elementBorderColor;
-        border-radius: 5px;
-        cursor: pointer;
-        user-select: none;
-        font-weight: bold;
-        transition: $defaultTime all ease;
-    }
+        .reset {
+            width: 15%;
+            transition: $defaultTime all ease;
+        }
 
-    button:hover {
-        background-color: $hoverDefaultColor;
-        color: white;
-    }
-
-    .butDis:hover {
-        color: $colorInactive;
-        background-color: $elementBackgroundColor;
-        cursor: auto;
-
+        .reset:hover  {
+            .resetIcon {
+                color: white;
+            }
+        }
     }
 }

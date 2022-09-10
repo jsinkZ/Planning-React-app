@@ -14,11 +14,11 @@ const Todo = ({
 	todo,
 	selectedTodos,
 	showNotes,
-	isDone,
+	isCompleted,
 	onClickSelectTodo,
 	onClickActionNotes,
 	onClickConfirmRemove,
-	onClickDoneTodo,
+	onClickCompleteTodo,
 	onClickEditTodo,
 }) => {
 	const isSelected = (todoId) => selectedTodos.includes(todoId)
@@ -28,19 +28,19 @@ const Todo = ({
 		onClickEditTodo(todoId)
 	}
 	const style = {
-		borderTopColor: isDone
+		borderTopColor: isCompleted
 			? colors.inactive
 			: todo.tag && !isSelected(todo.id)
 			? todo.tag.color
 			: colors.defaultBlue,
 		backgroundColor: selectedTodos.includes(todo.id) ? colors.defaultBlue : '',
 		color: selectedTodos.includes(todo.id) ? 'white' : '',
-		textDecoration: isDone ? 'line-through' : '',
+		textDecoration: isCompleted ? 'line-through' : '',
 	}
 
 	return (
 		<div className={classes.todoGroup}>
-			{!isDone && (
+			{!isCompleted && (
 				<Checkbox
 					sx={{
 						'&.Mui-checked': {
@@ -55,7 +55,7 @@ const Todo = ({
 				/>
 			)}
 
-			<div className={classes.todoElement} onClick={!isDone ? () => onClickSelectTodo(todo.id) : null}>
+			<div className={classes.todoElement} onClick={!isCompleted ? () => onClickSelectTodo(todo.id) : null}>
 				{todo.notes !== '' && showNotes.includes(todo.id) ? (
 					<div
 						onClick={(event) => event.stopPropagation()}
@@ -69,9 +69,9 @@ const Todo = ({
 
 				<div style={style} className={classes.todoMain}>
 					<Checkbox
-						checked={isDone}
+						checked={isCompleted}
 						onClick={(event) => event.stopPropagation()}
-						onChange={() => onClickDoneTodo(todo.id)}
+						onChange={() => onClickCompleteTodo(todo.id)}
 						sx={{
 							'&.Mui-checked': {
 								color: colors.success,
@@ -89,13 +89,13 @@ const Todo = ({
 					) : (
 						''
 					)}
-					{!isDone && (
+					{!isCompleted && (
 						<IconButton onClick={(event) => onClickEdit(event, todo.id)}>
 							<EditIcon className={classes.edit} />
 						</IconButton>
 					)}
 					<IconButton
-						onClick={(event) => onClickConfirmRemove(event, todo.id, isDone)}
+						onClick={(event) => onClickConfirmRemove(event, todo.id, isCompleted)}
 						className={classes.remove}
 					>
 						<DeleteIcon />

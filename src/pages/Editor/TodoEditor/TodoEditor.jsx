@@ -1,4 +1,6 @@
 import React from 'react'
+import { IconButton } from '@mui/material'
+import CloseIcon from '@mui/icons-material/Close'
 
 import classes from './TodoEditor.module.scss'
 import { tags } from '../../../assets/js/tags'
@@ -7,11 +9,12 @@ const TodoEditor = ({
 	todoValue,
 	todoNotes,
 	selectedTag,
+	editingTodo,
 	onChangeValue,
 	onChangeNotes,
 	onClickSetTag,
 	onClickCreateTodo,
-	editingTodo,
+	onClickReset,
 }) => {
 	const [hoveredTag, setHoveredTag] = React.useState('')
 	const disabledButton = todoValue === ''
@@ -60,13 +63,18 @@ const TodoEditor = ({
 					</div>
 				</div>
 			</div>
-			<button
-				disabled={disabledButton ? true : false}
-				onClick={onClickCreateTodo}
-				className={`${disabledButton ? classes.butDis : ''}`}
-			>
-				{editingTodo !== null ? 'Save' : 'Create todo'}
-			</button>
+			<div className={classes.buttons}>
+				<button
+					disabled={disabledButton ? true : false}
+					onClick={onClickCreateTodo}
+					className={`${disabledButton ? classes.butDis : ''}`}
+				>
+					{editingTodo !== null ? 'Save' : 'Create todo'}
+				</button>
+				<IconButton disabled={disabledButton ? true : false} className={classes.reset} onClick={onClickReset}>
+					<CloseIcon color={disabledButton ? '' : 'error'} className={classes.resetIcon} />
+				</IconButton>
+			</div>
 		</div>
 	)
 }
