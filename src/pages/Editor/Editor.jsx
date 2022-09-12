@@ -12,14 +12,16 @@ import { todos } from '../../assets/js/todos'
 // TODO: Сделать навигацию
 // TODO: Перейти на Redux
 
+// ! BUG: При добавлении описания в todo без notes, меняется размер элемента
+
 const Editor = () => {
-	const [todoItems, setTodoItems] = React.useState(todos.filter((td) => !td.isCompleted)) // * Todos active 				@todos array
-	const [completedTodos, setCompletedTodos] = React.useState(todos.filter((td) => td.isCompleted)) // * Todos completed 	@todos array
-	const [todoValue, setTodoValue] = React.useState('') // * On edit/create td name 										@string
-	const [todoNotes, setTodoNotes] = React.useState('') // * On edit/create td notes 										@string
-	const [selectedTag, setSelectedTag] = React.useState('') // * On edit/create td tag 									@tag
-	const [selectedTodos, setSelectedTodos] = React.useState([]) // * Selected todos 										@id array
-	const [editingTodo, setEditingTodo] = React.useState(null) // * Current todo 											@id || null
+	const [todoItems, setTodoItems] = React.useState(todos.filter((td) => !td.isCompleted)) // * Todos active @todos array
+	const [completedTodos, setCompletedTodos] = React.useState(todos.filter((td) => td.isCompleted)) // * Todos completed @todos array
+	const [todoValue, setTodoValue] = React.useState('') // * On edit/create td name @string
+	const [todoNotes, setTodoNotes] = React.useState('') // * On edit/create td notes @string
+	const [selectedTag, setSelectedTag] = React.useState('') // * On edit/create td tag @tag
+	const [selectedTodos, setSelectedTodos] = React.useState([]) // * Selected todos @id array
+	const [editingTodo, setEditingTodo] = React.useState(null) // * Current todo @id || null
 
 	const onChangeValue = (event) => setTodoValue(event.target.value)
 	const onChangeNotes = (event) => setTodoNotes(event.target.value)
@@ -64,26 +66,6 @@ const Editor = () => {
 		else setSelectedTodos(todoItems.filter((td) => !td.isCompleted).map((td) => td.id))
 	}
 
-	const onClickRemoveTodo = (todoId, isCompleted) => {
-		const index = todos.findIndex((td) => todoId === td.id)
-
-		if (isCompleted) setCompletedTodos(completedTodos.filter((td) => todoId !== td.id))
-		else {
-			if (selectedTodos.includes(todoId)) setSelectedTodos(selectedTodos.filter((td) => td !== todoId))
-
-			setTodoItems(todoItems.filter((td) => todoId !== td.id))
-		}
-
-		if (editingTodo === todoId) {
-			setTodoValue('')
-			setTodoNotes('')
-			setSelectedTag('')
-			setEditingTodo(null)
-		}
-
-		todos.splice(index, 1)
-	}
-
 	const onClickCompleteTodo = (todoId) => {
 		const thisTodo = getTodoById(todoId)
 		const index = todos.findIndex((td) => todoId === td.id)
@@ -119,6 +101,26 @@ const Editor = () => {
 		setEditingTodo(todoId)
 		setTodoValue(thisTodo.name)
 		setTodoNotes(thisTodo.notes)
+	}
+
+	const onClickRemoveTodo = (todoId, isCompleted) => {
+		const index = todos.findIndex((td) => todoId === td.id)
+
+		if (isCompleted) setCompletedTodos(completedTodos.filter((td) => todoId !== td.id))
+		else {
+			if (selectedTodos.includes(todoId)) setSelectedTodos(selectedTodos.filter((td) => td !== todoId))
+
+			setTodoItems(todoItems.filter((td) => todoId !== td.id))
+		}
+
+		if (editingTodo === todoId) {
+			setTodoValue('')
+			setTodoNotes('')
+			setSelectedTag('')
+			setEditingTodo(null)
+		}
+
+		todos.splice(index, 1)
 	}
 
 	const onClickRemoveSelectedTodos = (todosIdArray) => {
@@ -165,9 +167,9 @@ const Editor = () => {
 				isSelectedAll={isSelectedAll}
 				onClickSelectTodo={onClickSelectTodo}
 				onChangeSelectAllTodo={onChangeSelectAllTodo}
-				onClickRemoveTodo={onClickRemoveTodo}
 				onClickCompleteTodo={onClickCompleteTodo}
 				onClickCompleteSelectedTodos={onClickCompleteSelectedTodos}
+				onClickRemoveTodo={onClickRemoveTodo}
 				onClickRemoveSelectedTodos={onClickRemoveSelectedTodos}
 				onClickEditTodo={onClickEditTodo}
 			/>

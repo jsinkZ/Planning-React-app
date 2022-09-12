@@ -17,7 +17,7 @@ export const todos = [
 	},
 	{
 		id: 3,
-		name: 'Homework',
+		name: 'Math homework',
 		notes: 'Par. 13, Ex. 1-3 & Par.14, Ex. 5',
 		tag: tags[2],
 		isCompleted: false,

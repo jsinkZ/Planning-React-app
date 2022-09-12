@@ -60,6 +60,7 @@ const Todo = ({
 					<div
 						onClick={(event) => event.stopPropagation()}
 						className={`${classes.todoNotes} ${showNotes ? classes.show : ''}`}
+						style={{ textDecoration: isCompleted ? 'line-through' : '' }}
 					>
 						{todo.notes}
 					</div>
