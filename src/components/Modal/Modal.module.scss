@@ -1,0 +1,37 @@
+@import '../../assets/styles/index.scss';
+
+.modal {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    place-items: center;
+    background-color: #000000a1;
+    backdrop-filter: blur(2px);
+    z-index: 9999999999;
+
+    .modalWindow {
+        box-sizing: border-box;
+        width: 650px;
+        min-height: 150px;
+        background-color: white;
+        border-radius: 20px;
+        border-top: 45px solid;
+        border-top-color: $defaultColorBLue;
+
+        .modalHeader {
+            margin: 15px 15px 0 0;
+            float: right;
+        }
+
+        h2 {
+            text-align: center;
+            align-items: center;
+            margin: 0 auto;
+            border: 1px solid red;
+        }
+    }
+}
