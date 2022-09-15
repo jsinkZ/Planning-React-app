@@ -4,7 +4,6 @@ import CloseIcon from '@mui/icons-material/Close'
 
 import classes from './TodoEditor.module.scss'
 import { tags } from '../../../assets/js/tags'
-import Modal from '../../../components/Modal/Modal'
 
 const TodoEditor = ({
 	todoValue,

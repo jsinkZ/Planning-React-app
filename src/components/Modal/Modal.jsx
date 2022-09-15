@@ -5,21 +5,25 @@ import CloseIcon from '@mui/icons-material/Close'
 import classes from './Modal.module.scss'
 import { colors } from '../../assets/js/colors'
 
-const Modal = ({ title = 'Modal title', content = 'Modal content', isOpen, isAlert, callback }) => {
-	const [open, setOpen] = React.useState(isOpen)
+const Modal = ({
+	title = 'Modal title',
+	content = 'Modal content',
+	isDisplay,
+	isAlert,
+	callback,
+	setDisplayModal,
+}) => {
+	const onClickActionModal = (cb) => {
+		if (!isAlert && cb) cb()
 
-	const onClickCloseModal = () => setOpen(false)
-	const onClickAcceptModal = (cb) => {
-		if (!isAlert) cb()
-
-		setOpen(false)
+		setDisplayModal(false)
 	}
 
 	return (
-		<div className={`${classes.modal} ${!open ? classes.modalClosed : ''}`}>
+		<div className={`${classes.modal} ${!isDisplay ? classes.modalClosed : ''}`}>
 			<div className={classes.modalWindow}>
 				<div className={classes.modalHeader}>
-					<IconButton onClick={onClickCloseModal}>
+					<IconButton onClick={() => onClickActionModal()}>
 						<CloseIcon
 							sx={{
 								color: colors.error,
@@ -34,7 +38,7 @@ const Modal = ({ title = 'Modal title', content = 'Modal content', isOpen, isAle
 				<p> {content} </p>
 				<div className={classes.buttons}>
 					<Button
-						onClick={onClickCloseModal}
+						onClick={() => onClickActionModal()}
 						variant='contained'
 						sx={{
 							backgroundColor: colors.error,
@@ -46,7 +50,7 @@ const Modal = ({ title = 'Modal title', content = 'Modal content', isOpen, isAle
 						Decline
 					</Button>
 					<Button
-						onClick={() => onClickAcceptModal(callback)}
+						onClick={() => onClickActionModal(callback)}
 						variant='contained'
 						sx={{
 							backgroundColor: colors.success,

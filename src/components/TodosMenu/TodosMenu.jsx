@@ -9,7 +9,6 @@ import CheckBoxIcon from '@mui/icons-material/CheckBox'
 import classes from './TodosMenu.module.scss'
 import Todo from '../Todo/Todo'
 import { colors } from '../../assets/js/colors'
-import Modal from '../Modal/Modal'
 
 const TodosMenu = ({
 	todoItems,
@@ -23,6 +22,8 @@ const TodosMenu = ({
 	onClickCompleteSelectedTodos,
 	onClickRemoveSelectedTodos,
 	onClickEditTodo,
+	setDisplayModal,
+	setModalData,
 }) => {
 	const [showNotes, setShowNotes] = React.useState([])
 
@@ -40,9 +41,12 @@ const TodosMenu = ({
 
 		const thisArray = isCompleted ? completedTodos : todoItems
 		const thisTodo = thisArray.find((td) => td.id === todoId)
-		const isAccept = <Modal /> //window.confirm(`Are you sure you want to remove todo: '${thisTodo.name}' ?`)
-		return isAccept
-		// if (isAccept) onClickRemoveTodo(todoId, isCompleted)
+		setDisplayModal(true)
+		setModalData([
+			`Removing todo`,
+			`Are you sure you want to remove todo: '${thisTodo.name}' ?`,
+			() => onClickRemoveTodo(todoId, isCompleted),
+		])
 	}
 
 	const onClickConfirmRemoveSelected = (selectedTodos) => {
@@ -50,9 +54,12 @@ const TodosMenu = ({
 			.filter((td) => selectedTodos.includes(td.id))
 			.map((td) => `\n'${td.name}'`)
 			.join(',')
-		const isAccept = window.confirm(`Are you sure you want to remove todos: ${todosArray} ?`)
-
-		if (isAccept) onClickRemoveSelectedTodos(selectedTodos)
+		setDisplayModal(true)
+		setModalData([
+			`Removing todos`,
+			`Are you sure you want to remove todos: ${todosArray} ?`,
+			() => onClickRemoveSelectedTodos(selectedTodos),
+		])
 	}
 
 	return (

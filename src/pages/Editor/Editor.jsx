@@ -7,25 +7,12 @@ import Modal from '../../components/Modal/Modal'
 
 // TODO: Добавить важность todo
 // TODO: Добавить сортировку по тегам/важности
-// TODO: Добавить создание тега/удаление
-// TODO: Сделать модальное окно для подтверждения изменений/добавления тегов
+// ! TODO: Добавить создание тега/удаление
 // TODO: Сделать закреп todo
 // TODO: Сделать навигацию
-// TODO: Перейти на Redux
-// TODO: ! ПЕРЕПИСАТЬ MODAL !!!
-// TODO: Перейти на использование hover внутри style, а не через state
-
-// ! BUG: При добавлении описания в todo без notes, меняется размер элемента
+// ! TODO: Перейти на Redux
 
 const Editor = () => {
-	const _modalObj = {
-		title: '',
-		content: '',
-		isShow: false,
-		isAlert: false,
-		callback: () => null,
-	}
-
 	const [todoItems, setTodoItems] = React.useState(todos.filter((td) => !td.isCompleted)) // * Todos active @todos array
 	const [completedTodos, setCompletedTodos] = React.useState(todos.filter((td) => td.isCompleted)) // * Todos completed @todos array
 	const [todoValue, setTodoValue] = React.useState('') // * On edit/create td name @string
@@ -33,7 +20,8 @@ const Editor = () => {
 	const [selectedTag, setSelectedTag] = React.useState('') // * On edit/create td tag @tag
 	const [selectedTodos, setSelectedTodos] = React.useState([]) // * Selected todos @id array
 	const [editingTodo, setEditingTodo] = React.useState(null) // * Current todo @id || null
-	const [modalObject, setModalObject] = React.useState(_modalObj)
+	const [displayModal, setDisplayModal] = React.useState(false) // * Display for modal boolean
+	const [modalData, setModalData] = React.useState([])
 
 	const onChangeValue = (event) => setTodoValue(event.target.value)
 	const onChangeNotes = (event) => setTodoNotes(event.target.value)
@@ -161,11 +149,13 @@ const Editor = () => {
 	return (
 		<>
 			<Modal
-				title={modalObject.title}
-				content={modalObject.content}
-				isOpen={modalObject.isShow}
-				callback={modalObject.callback}
+				title={modalData[0]}
+				content={modalData[1]}
+				callback={modalData[2]}
+				isDisplay={displayModal}
+				setDisplayModal={setDisplayModal}
 			/>
+
 			<TodoEditor
 				todoValue={todoValue}
 				todoNotes={todoNotes}
@@ -190,6 +180,8 @@ const Editor = () => {
 				onClickRemoveTodo={onClickRemoveTodo}
 				onClickRemoveSelectedTodos={onClickRemoveSelectedTodos}
 				onClickEditTodo={onClickEditTodo}
+				setDisplayModal={setDisplayModal}
+				setModalData={setModalData}
 			/>
 		</>
 	)
