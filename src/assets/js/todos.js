@@ -36,4 +36,10 @@ export const todos = [
 		tag: '',
 		isCompleted: false,
 	},
+	{
+		id: 6,
+		name: 'Deploy project',
+		tag: tags[1],
+		isCompleted: true,
+	},
 ]

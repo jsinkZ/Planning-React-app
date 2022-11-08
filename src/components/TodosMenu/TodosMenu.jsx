@@ -25,43 +25,6 @@ const TodosMenu = ({
 	setDisplayModal,
 	setModalData,
 }) => {
-	const [showNotes, setShowNotes] = React.useState([])
-
-	const onChangeCheckBox = () => {}
-
-	const onClickActionNotes = (event, todoId) => {
-		event.stopPropagation()
-
-		if (showNotes.includes(todoId)) setShowNotes(showNotes.filter((td) => td !== todoId))
-		else setShowNotes([...showNotes, todoId])
-	}
-
-	const onClickConfirmRemove = (event, todoId, isCompleted = false) => {
-		event.stopPropagation()
-
-		const thisArray = isCompleted ? completedTodos : todoItems
-		const thisTodo = thisArray.find((td) => td.id === todoId)
-		setDisplayModal(true)
-		setModalData([
-			`Removing todo`,
-			`Are you sure you want to remove todo: '${thisTodo.name}' ?`,
-			() => onClickRemoveTodo(todoId, isCompleted),
-		])
-	}
-
-	const onClickConfirmRemoveSelected = (selectedTodos) => {
-		const todosArray = todoItems
-			.filter((td) => selectedTodos.includes(td.id))
-			.map((td) => `\n'${td.name}'`)
-			.join(',')
-		setDisplayModal(true)
-		setModalData([
-			`Removing todos`,
-			`Are you sure you want to remove todos: ${todosArray} ?`,
-			() => onClickRemoveSelectedTodos(selectedTodos),
-		])
-	}
-
 	return (
 		<>
 			<div className={classes.todos}>
@@ -108,9 +71,9 @@ const TodosMenu = ({
 									<DeleteIcon />
 								</IconButton>
 							</div>
-							{todoItems.map((todo) => (
+							{todoItems.map((todo, index) => (
 								<Todo
-									key={todo.id}
+									key={index}
 									todo={todo}
 									selectedTodos={selectedTodos}
 									showNotes={showNotes}
@@ -129,9 +92,9 @@ const TodosMenu = ({
 					<>
 						<h2> Completed todos </h2>
 						<div className={classes.todoElements}>
-							{completedTodos.map((todo) => (
+							{completedTodos.map((todo, index) => (
 								<Todo
-									key={todo.id}
+									key={index}
 									todo={todo}
 									selectedTodos={selectedTodos}
 									showNotes={showNotes}
