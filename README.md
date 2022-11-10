@@ -1,5 +1,8 @@
 ## Stack
 
 - React
-- SCSS
+- react-router-dom
+- Redux
+- SASS
+- Normalize
 - MUI
