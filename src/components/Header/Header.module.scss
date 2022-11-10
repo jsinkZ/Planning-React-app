@@ -1,14 +1,2 @@
 @import '../../assets/styles/index.scss';
 
-header {
-    background-color: $defaultColorBLue;
-    color: white;
-    padding: 25px;
-
-    h2 {
-        padding: 0;
-        margin: 0;
-        margin-left: 45px;
-        user-select: none;
-    }
-}
