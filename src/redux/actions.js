@@ -14,9 +14,9 @@ export const changeTodo = (todo) => {
 	}
 }
 
-export const deleteTodo = (todo) => {
+export const deleteTodo = (id) => {
 	return {
 		type: DELETE_TODO,
-		data: { ...todo },
+		data: id,
 	}
 }

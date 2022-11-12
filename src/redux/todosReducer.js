@@ -2,7 +2,7 @@ import { todos } from '../assets/js/todos'
 import { CREATE_TODO, CHANGE_TODO, DELETE_TODO } from './types'
 
 const initialState = {
-	todos: todos,
+	todos,
 }
 
 export const todosReducer = (state = initialState, action) => {
