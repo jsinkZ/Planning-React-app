@@ -21,9 +21,9 @@ export const categoriesReducer = (state = initialState, action) => {
 			return { ...state, categories: nextCategories }
 		case DELETE_CATEGORY:
 			return (() => {
-				const { id } = action
+				const { data } = action
 				const nextCategories = categories.filter((category) => category.id !== data.id)
-				return { ...state, categories: categories }
+				return { ...state, categories: nextCategories }
 			})()
 
 		default:
