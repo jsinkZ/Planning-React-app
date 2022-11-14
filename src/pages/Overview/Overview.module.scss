@@ -1,0 +1,13 @@
+@import '../../assets/styles/index.scss';
+
+.overviewGroup {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+
+    .nullCategoryList {
+        font-size: 2em;
+        user-select: none;
+        color: $inactiveColor;
+    }
+}
