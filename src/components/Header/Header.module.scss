@@ -1,2 +1,16 @@
 @import '../../assets/styles/index.scss';
 
+.headerActions {
+    display: flex;
+    justify-content: space-between;
+
+    .accountInfo {
+        display: flex;
+        align-items: center;
+
+        p {
+            font-family: 'Noto-Sans-Bold';
+            margin-right: 27px;
+        }
+    }
+}
