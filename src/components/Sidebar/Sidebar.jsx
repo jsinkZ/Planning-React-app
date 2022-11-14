@@ -11,7 +11,7 @@ const Sidebar = () => {
 	return (
 		<>
 			<h2 className={classes.sidebarLogo}> .studio </h2>
-			<ul className={`${classes.sidebarBlock}`}>
+			<ul className={`${classes.sidebarBlock} ${classes.sideBarBlockMain}`}>
 				<li>
 					<NavLink className={(navData) => (navData.isActive ? 'linkActive' : 'link')} to='/'>
 						<HomeIcon /> Overview
