@@ -5,7 +5,7 @@ import 'normalize-css'
 import './App.scss'
 import Header from './components/Header/Header'
 import Sidebar from './components/Sidebar/Sidebar'
-import Home from './pages/Home'
+import Overview from './pages/Overview'
 
 const App = () => {
 	return (
@@ -19,7 +19,7 @@ const App = () => {
 				</header>
 				<main>
 					<Routes>
-						<Route path='/' element={<Home />}></Route>
+						<Route path='/' element={<Overview />}></Route>
 					</Routes>
 				</main>
 			</div>
