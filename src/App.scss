@@ -28,7 +28,7 @@ html {
         display: flex;
         flex-direction: column;
         width: $sideBarWidth;
-        height: 100vh;
+        height: 100vh; // 100% better, but bugging height to lower
         margin: 0;
         padding: 40px;
         border-right: 2px solid $borderSectionColor;
@@ -48,6 +48,7 @@ html {
           margin: 0;
           padding: 40px;
           box-sizing: border-box;
+          user-select: none;
         }
 
         main {
@@ -56,15 +57,17 @@ html {
           margin: 0;
           padding: 40px;
           box-sizing: border-box;
+
+          h2 {
+            user-select: none;
+          }
         }
       }
-
     } 
-
   }
 
   code {
-    font-family: 'consolas', consolas source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    font-family: 'Consolas', consolas, source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
       monospace;
   }
 }
