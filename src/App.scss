@@ -1,33 +1,92 @@
 @import './assets/styles/index.scss';
 
+
+$sideBarWidth: 16%;
+$mainActionPageWidth: 100% - $sideBarWidth;
+
 ::selection {
-  background-color: $hoverDefaultColor;
+  background-color: $blueColor;
   color: white;
 }
 
 html {
   min-height: 100vh;
-  background-color: $mainBackgroundColor;
+  background-color: $backgroundAppColor;
 
   body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-      sans-serif;
+    font-family: 'Noto-Sans';
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 
-    main {
+    .app {
+      display: flex;
+      justify-content: flex-start;
+      box-sizing: border-box;
+
+      .sidebar {
         display: flex;
-        justify-content: flex-start;
-        max-width: 1200px;
-        min-height: 520px;
-        margin: 35px auto;
-    }
+        flex-direction: column;
+        width: $sideBarWidth;
+        height: 100vh; // 100% better, but bugging height to lower
+        margin: 0;
+        padding: 40px;
+        border-right: 2px solid $borderSectionColor;
+        background-color: white;
+        box-sizing: border-box;
+      }
+
+      .mainActionPage {
+        display: flex;
+        flex-direction: column;
+        width: $mainActionPageWidth;
+        background-color: $backgroundMenuColor;
+
+        header {
+          width: 100%;
+          height: 12%;
+          margin: 0;
+          padding: 40px;
+          box-sizing: border-box;
+          user-select: none;
+        }
+
+        main {
+          width: 100%;
+          height: 100%;
+          margin: 0;
+          padding: 40px;
+          box-sizing: border-box;
+
+          h2 {
+            user-select: none;
+          }
+        }
+      }
+    } 
   }
 
   code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    font-family: 'Consolas', consolas, source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
       monospace;
   }
 }
+
+.link, .linkActive {
+  color: $inactiveColor;
+  text-decoration: none;
+  transition: all $changeTime ease-in-out;
+
+  &:hover {
+    color: black;
+  }
+}
+
+.linkActive {
+  color: $blackColor;
+
+  &:focus {
+    outline: none;
+  }
+}
+

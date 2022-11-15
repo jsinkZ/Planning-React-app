@@ -26,14 +26,26 @@ export const todos = [
 		id: 4,
 		name: '😴 Just chill',
 		notes: ':P Z-Z-Z-Z',
-		tag: '',
+		tag: tags[2],
 		isCompleted: true,
 	},
 	{
 		id: 5,
 		name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
 		notes: 'Max letters for good display: 34',
-		tag: '',
+		tag: tags[0],
+		isCompleted: false,
+	},
+	{
+		id: 6,
+		name: 'Deploy project',
+		tag: tags[1],
+		isCompleted: true,
+	},
+	{
+		id: 7,
+		name: 'Do some',
+		tag: tags[2],
 		isCompleted: false,
 	},
 ]
